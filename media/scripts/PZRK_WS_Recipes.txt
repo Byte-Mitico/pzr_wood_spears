@@ -1,0 +1,14 @@
+module Base {
+    recipe Create Spear
+    {
+        Plank/TreeBranch/Mop/Broom,
+        keep [Recipe.GetItemTypes.SharpKnife]/SharpedStone/MeatCleaver,
+
+        Result:SpearCrafted,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.CreateSpear,
+        OnGiveXP:Recipe.OnGiveXP.WoodWork5,
+        Override:true
+    }
+}
