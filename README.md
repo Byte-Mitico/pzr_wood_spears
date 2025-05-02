@@ -1,2 +1,2 @@
 # pzr_wood_spears
-Makes wood spear and associates more reasonable.
+Makes the wood spear and it's associates more reasonable.
