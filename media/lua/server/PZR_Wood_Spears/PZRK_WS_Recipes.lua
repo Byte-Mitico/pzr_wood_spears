@@ -1,78 +1,75 @@
 require "recipecode"
 
 
--- get the spear, lower its condition according to woodwork perk level
--- also lower the used knife condition
+-- Sets the spear condition based on woodwork level.
 function Recipe.OnCreate.CreateSpear(items, result, player, selectedItem)
 
-    print("Custom CreateSpear()");
+    local lvl = player:getPerkLevel(Perks.Woodwork);
+    local conditionMax = result:getConditionMax();
+    local conditionMin = conditionMax / 2;
+    local step = (conditionMax - conditionMin) / 2;
+    local bonus = step * lvl;
+    local condition = conditionMin + bonus;
 
-    local conditionMax = 2 + player:getPerkLevel(Perks.Woodwork);
-    conditionMax = ZombRand(conditionMax, conditionMax + 2);
-    if conditionMax > result:getConditionMax() then
-        conditionMax = result:getConditionMax();
+    if condition > conditionMax then
+        result:setCondition(conditionMax);
+    else
+        result:setCondition(condition);
     end
-    if conditionMax < 2 then
-        conditionMax = 2;
-    end
-    result:setCondition(conditionMax)
-    
-    for i=0,items:size() - 1 do
-        if instanceof (items:get(i), "HandWeapon")
-		and (items:get(i):getCategories():contains("SmallBlade") or items:get(i):getCategories():contains("LongBlade") or items:get(i):getCategories():contains("Axe"))then
-            items:get(i):setCondition(items:get(i):getCondition() - 1);
-        end
-        if items:get(i):getType() == "SharpedStone" and ZombRand(3) == 0 then
-            player:getInventory():Remove(items:get(i))
-        end
-    end
+
 end
 
 
--- get a mix of spear & upgrade item to do a correct condition of the result
--- we take the craftedSpear condition and substract the attached weapon condition
+-- Sets the resulting condition to the addon condition minus half of how bad the spear is.
 function Recipe.OnCreate.UpgradeSpear(items, result, player, selectedItem)
 
-    print("Custom UpgradeSpear()");
+    local spear_status = 0;
+    local addon_status = 0;
+    local result_condition = result:getConditionMax();
 
-    local conditionMax = 0;
     for i=0,items:size() - 1 do
         if items:get(i):getType() == "SpearCrafted" then
-            conditionMax = items:get(i):getCondition()
+            local condition_max = items:get(i):getConditionMax();
+            local condition_curr = items:get(i):getCondition();
+            spear_status = condition_curr / condition_max;
         end
-    end
-    
-    for i=0,items:size() - 1 do
-        if instanceof (items:get(i), "HandWeapon") and items:get(i):getType() ~= "SpearCrafted" then
-            conditionMax = conditionMax - ((items:get(i):getConditionMax() - items:get(i):getCondition())/2)
-        end
-    end
-    
-    if conditionMax > result:getConditionMax() then
-        conditionMax = result:getConditionMax();
-    end
-    if conditionMax < 2 then
-        conditionMax = 2;
     end
 
-    result:setCondition(conditionMax);
+    for i=0,items:size() - 1 do
+        if instanceof(items:get(i), "HandWeapon") and items:get(i):getType() ~= "SpearCrafted" then
+            local condition_max = items:get(i):getConditionMax();
+            local condition_curr = items:get(i):getCondition();
+            addon_status = condition_curr / condition_max;
+        end
+    end
+
+    if addon_status > spear_status then
+        result_condition = result_condition * spear_status;
+    else
+        result_condition = result_condition * addon_status;
+    end
+
+    if result_condition < 1 then
+        result_condition = 1;
+    end
+
+    result:setCondition(result_condition);
+
 end
 
 
--- when we reclaim the weapon from a spear we get the weapon back
--- we also want to return the spear with appropriate condition
+-- When we reclaim the weapon from a spear we get the weapon back.
+-- We also want to return the spear with appropriate condition
 function Recipe.OnCreate.DismantleSpear(items, result, player, selectedItem)
 
-    print("Custom DismantleSpear()");
+    local result_condition = result:getConditionMax();
+    local condition_factor = selectedItem:getCondition() / selectedItem:getConditionMax();
 
-    local conditionMax = selectedItem:getCondition();
+    result_condition = result_condition * condition_factor;
+    result:setCondition(result_condition);
 
-    if conditionMax > selectedItem:getConditionMax() then
-        conditionMax = selectedItem:getConditionMax();
-    end
-    if conditionMax < 2 then
-        conditionMax = 2;
-    end
     local spear = player:getInventory():AddItem("Base.SpearCrafted");
-    spear:setCondition(conditionMax);
+    local spear_condition = spear:getConditionMax() * condition_factor;
+    spear:setCondition(spear_condition);
+
 end

@@ -1,4 +1,6 @@
 module Base {
+
+
     recipe Create Spear
     {
         Plank/TreeBranch/Mop/Broom,
@@ -11,4 +13,188 @@ module Base {
         OnGiveXP:Recipe.OnGiveXP.WoodWork5,
         Override:true
     }
+
+
+    recipe Attach Machete to Spear
+    {
+        SpearCrafted,
+        Machete,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearMachete,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Bread Knife to Spear
+    {
+        SpearCrafted,
+        BreadKnife,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearBreadKnife,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Butter Knife to Spear
+    {
+        SpearCrafted,
+        ButterKnife,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearButterKnife,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Fork to Spear
+    {
+        SpearCrafted,
+        Fork,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearFork,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Letter Opener to Spear
+    {
+        SpearCrafted,
+        LetterOpener,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearLetterOpener,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Scalpel to Spear
+    {
+        SpearCrafted,
+        Scalpel,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearScalpel,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Spoon to Spear
+    {
+        SpearCrafted,
+        Spoon,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearSpoon,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Scissors to Spear
+    {
+        SpearCrafted,
+        Scissors,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearScissors,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Hand Fork to Spear
+    {
+        SpearCrafted,
+        HandFork,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearHandFork,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Screwdriver to Spear
+    {
+        SpearCrafted,
+        Screwdriver,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearScrewdriver,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Kitchen Knife to Spear
+    {
+        SpearCrafted,
+        KitchenKnife,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearKnife,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Hunting Knife to Spear
+    {
+        SpearCrafted,
+        HuntingKnife,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearHuntingKnife,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
+    recipe Attach Ice Pick to Spear
+    {
+        SpearCrafted,
+        IcePick,
+        Rope/DuctTape/RippedSheets/LeatherStrips/DenimStrips/Twine,
+
+        Result:SpearIcePick,
+        Time:100.0,
+        Category:Survivalist,
+        OnCreate:Recipe.OnCreate.UpgradeSpear,
+        Override:true
+    }
+
+
 }
