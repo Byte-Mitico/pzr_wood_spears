@@ -1,0 +1,6 @@
+version=1
+id=3476121329
+title=PZR Spears Rebalanced
+description=Rebalances the spears so they are more accessible and durable.
+tags=Build 41;Balance
+visibility=public
