@@ -26,6 +26,7 @@ function Recipe.OnCreate.UpgradeSpear(items, result, player, selectedItem)
     local spear_status = 0;
     local addon_status = 0;
     local result_condition = result:getConditionMax();
+    local repair_count = 0;
 
     for i=0,items:size() - 1 do
         if items:get(i):getType() == "SpearCrafted" then
@@ -39,6 +40,7 @@ function Recipe.OnCreate.UpgradeSpear(items, result, player, selectedItem)
         if instanceof(items:get(i), "HandWeapon") and items:get(i):getType() ~= "SpearCrafted" then
             local condition_max = items:get(i):getConditionMax();
             local condition_curr = items:get(i):getCondition();
+            repair_count = items:get(i):getHaveBeenRepaired();
             addon_status = condition_curr / condition_max;
         end
     end
@@ -53,6 +55,7 @@ function Recipe.OnCreate.UpgradeSpear(items, result, player, selectedItem)
         result_condition = 2;
     end
 
+    result:setHaveBeenRepaired(repair_count);
     result:setCondition(result_condition);
 
 end
@@ -67,6 +70,7 @@ function Recipe.OnCreate.DismantleSpear(items, result, player, selectedItem)
 
     result_condition = result_condition * condition_factor;
     result:setCondition(result_condition);
+    result:setHaveBeenRepaired( selectedItem:getHaveBeenRepaired() );
 
     local spear = player:getInventory():AddItem("Base.SpearCrafted");
     local spear_condition = spear:getConditionMax() * condition_factor;
