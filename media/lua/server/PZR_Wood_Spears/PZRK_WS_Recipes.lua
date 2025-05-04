@@ -49,8 +49,8 @@ function Recipe.OnCreate.UpgradeSpear(items, result, player, selectedItem)
         result_condition = result_condition * addon_status;
     end
 
-    if result_condition < 1 then
-        result_condition = 1;
+    if result_condition < 2 then
+        result_condition = 2;
     end
 
     result:setCondition(result_condition);
